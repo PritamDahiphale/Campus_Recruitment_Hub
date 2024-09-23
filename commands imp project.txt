@@ -1,0 +1,24 @@
+important commands for running project:
+
+python -m venv folder
+
+folder\scripts\activate
+
+pip install flask-sqlalchemy
+
+python
+
+from app import db
+db.create_all()
+exit()
+
+pip install Flask-Migrate
+
+flask db init
+
+flask db migrate -m "Initial migration"
+
+python app.py
+
+flask db upgrade
+

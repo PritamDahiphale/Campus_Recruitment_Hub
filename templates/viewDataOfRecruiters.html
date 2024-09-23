@@ -1,0 +1,36 @@
+{% extends 'base_student.html' %}
+
+{% block content %}
+
+<div class="home_content">
+    <div class="text">Data of Past Recruiters</div>
+
+    <div class="title">
+        Basic information about Past Recruiters.
+    </div>
+    <div class="count">No. of Past Recruiters: {{totalrecruiters}}</div>
+    <table class="styled-table">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Company Name</th>
+            <th scope="col">Recruiter Name</th>
+            <th scope="col">Recruit Date</th>
+            <th scope="col">Selected Student</th>
+            <th scope="col">More Info</th>
+        </tr>
+        {% for recruit in recruiters %}
+        <tr>
+            <td>{{recruit["comp_id"]}}</td>
+            <td>{{recruit["comp_name"]}}</td>
+            <td>{{recruit["recruiter_name"]}}</td>
+            <td>{{recruit["recruit_date"]}}</td>
+            <td>{{recruit["selected_stud"]}}</td>
+            <td><a href="{{recruit['comp_website']}}">
+                    <button type="button" class="btn btn-primary">Visit Website</button></a>
+            </td>
+
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

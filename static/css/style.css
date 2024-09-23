@@ -1,0 +1,577 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+::selection {
+  color: #000;
+  background: #fff;
+}
+
+nav {
+  position: fixed;
+  background: #1b1b1b;
+  width: 100%;
+  padding: 10px 0;
+  z-index: 12;
+}
+
+nav .menu {
+  max-width: 1250px;
+  height: auto;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.menu .logo a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 23px;
+  font-weight: 600;
+}
+
+.menu ul {
+  display: inline-flex;
+}
+
+.menu ul li {
+  list-style: none;
+  margin-left: 7px;
+}
+
+.menu ul li:first-child {
+  margin-left: 0px;
+}
+
+.menu ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 8px 15px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.menu ul li a:hover {
+  background: #fff;
+  color: black;
+}
+
+
+.img {
+  /* group work image good */
+  /* graduate wali pan chan */
+  background: no-repeat;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  position: fixed;
+}
+
+.img::before {
+  content: '';
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+
+.center {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.center .title {
+  color: #fff;
+  font-size: 50px;
+  font-weight: 400;
+}
+
+.center .sub_title {
+  color: #fff;
+  font-size: 40px;
+  font-weight: 300;
+}
+
+.center .btns {
+  margin-top: 20px;
+}
+
+.center .btns button {
+  height: 55px;
+  width: 300px;
+  border-radius: 5px;
+  border: none;
+  margin: 0 10px;
+  border: 2px solid white;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 0 10px;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.center .btns button:first-child {
+  /* color: #fff;
+  background: none; */
+  background-color: #e0dddd;
+  color: black;
+}
+
+.btns button:first-child:hover {
+  background: white;
+  color: rgb(35, 4, 95);
+
+}
+
+/* CSS for header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f5f5f5;
+}
+
+.header .logo {
+  font-size: 25px;
+  font-family: 'Sriracha', cursive;
+  color: #000;
+  text-decoration: none;
+  margin-left: 30px;
+}
+
+.nav-items {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #f5f5f5;
+  margin-right: 20px;
+}
+
+.nav-items a {
+  text-decoration: none;
+  color: #000;
+  padding: 35px 20px;
+}
+
+.moreInfo {
+  background-color: rgb(12, 55, 87);
+  border-radius: 20px;
+  font-size: 20px;
+  font-weight: 300;
+  opacity: 0.8;
+  box-shadow: 0 4pxs 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.moreInfo:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+/* CSS for main element */
+.intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 550px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%),
+    url('../images/CSVIIT.jpg');
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.intro h1 {
+  font-family: sans-serif;
+  font-size: 40px;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.intro p {
+  font-size: 30px;
+  color: #d1d1d1;
+  text-transform: uppercase;
+  margin: 20px 0;
+}
+
+
+.intro button {
+  background-color: #5edaf0;
+  color: #000;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.4)
+}
+
+#achievements {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 40px 80px;
+}
+
+#achievements .work {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 40px;
+}
+
+#achievements .work i {
+  width: fit-content;
+  font-size: 50px;
+  color: #333333;
+  border-radius: 50%;
+  border: 2px solid #333333;
+  padding: 12px;
+}
+
+#achievements .work .work-heading {
+  font-size: 20px;
+  color: #333333;
+  text-transform: uppercase;
+  margin: 10px 0;
+}
+
+#achievements .work .work-text {
+  font-size: 15px;
+  color: #585858;
+  margin: 10px 0;
+}
+
+.about-me {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 80px;
+  border-top: 2px solid #eeeeee;
+}
+
+.about-me img {
+  width: 500px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.about-me-text h2 {
+  font-size: 30px;
+  color: #333333;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.about-me-text p {
+  font-size: 15px;
+  color: #585858;
+  margin: 10px 0;
+}
+
+/* CSS for footer */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #302f49;
+  /*new changes*/
+  padding: 30px 80px;
+
+
+  padding-left: 180px;
+
+
+}
+
+.footer .copy {
+  color: #fff;
+}
+
+.bottom-links {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 40px 0;
+}
+
+.bottom-links .links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 40px;
+}
+
+.bottom-links .links span {
+  font-size: 20px;
+  color: #fff;
+  text-transform: uppercase;
+  margin: 10px 0;
+}
+
+.bottom-links .links a {
+  text-decoration: none;
+  color: #a1a1a1;
+  padding: 10px 20px;
+}
+
+/* contact form css */
+.column {
+  float: left;
+  padding-right: 70px;
+  border-radius: 48%;
+  padding-top: 65px;
+}
+
+#name,
+#email {
+  width: 50%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  margin-left: 20px;
+  resize: vertical;
+}
+
+textarea {
+  width: 58.5%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  margin-left: 20px;
+  resize: vertical;
+}
+
+.ctsub {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 20%;
+  margin-left: 410px;
+  margin-top: 30px;
+}
+
+.ctsub:hover {
+  background-color: #45a049;
+}
+
+.containercontact {
+  padding: 80px;
+}
+
+.containercontact2 {
+
+  background-color: #f2f2f2;
+  /* padding: 80px; */
+  /* display: flex; */
+  /* flex-direction: row; */
+  font-size: 15px;
+}
+
+.noticeimg {
+  width: 30%;
+
+}
+
+/* 
+.col1 .col2 {
+  flex: 1;
+  padding: 1em;
+} */
+
+.col2 {
+  font-size: 15px;
+
+}
+
+.noticetxt {
+  color: #730575;
+  font-weight: 600;
+  background-color: rgb(225, 225, 214);
+  font-size: 22px;
+}
+
+.count2 {
+  color: rgb(14, 73, 210);
+  font-size: 17px;
+}
+
+.success {
+  padding: 10px;
+  width: auto;
+  font-size: 17px;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #ddffdd;
+  border-left: 6px solid #04AA6D;
+  color: rgb(180, 5, 63);
+}
+
+.name {
+  font-size: 15px;
+  color: black;
+  font-family: 'Courier New', Courier, monospace;
+  letter-spacing: 1px;
+}
+
+/* Login and signup form css */
+.logintxt {
+  font-weight: 600;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding-top: 90px;
+  padding-left: 0px;
+  align-items: flex-start;
+  font-size: 16px;
+  flex-direction: row;
+}
+
+.box {
+  width: 550px;
+  height: 520px;
+  font-size: 16px;
+  padding: 40px 40px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 30px;
+  background-color: white;
+
+}
+
+.image {
+  width: 350px;
+  padding-left: 0;
+  padding-right: 400px;
+  padding-top: 65px;
+}
+
+.column3 {
+  float: left;
+  padding-right: 20px;
+  border-radius: 50%;
+}
+
+
+.image1 {
+  width: 350px;
+  padding-left: 0;
+  padding-right: 430px;
+  padding-top: 55px;
+}
+
+.column2 {
+  float: left;
+  padding-right: 20px;
+  width: 400px;
+  border-radius: 48%;
+}
+
+
+.user {
+  margin-top: 50px;
+}
+
+#icons {
+  position: absolute;
+}
+
+input {
+  width: 90%;
+  margin-bottom: 25px;
+  padding: 0px 30px 15px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 1px solid #141E75;
+  outline: none;
+  color: #fff;
+}
+
+input:focus {
+  border-bottom: 1px solid #EEEEEE;
+}
+
+.login-btn {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.btn {
+  display: block;
+  width: 80%;
+  padding: 15px;
+  background-color: #2c8c30;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 20px;
+  font-weight: 600;
+  opacity: 0.8;
+  box-shadow: 0 4pxs 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.btn:hover {
+  opacity: 6;
+  cursor: pointer;
+}
+
+.signup span {
+  color: #7fb8e6;
+}
+
+.signup span:hover {
+  color: #3793df;
+}
+
+
+#username,
+#emailsign,
+#password {
+  color: black;
+}
+
+a {
+  text-decoration: none;
+}

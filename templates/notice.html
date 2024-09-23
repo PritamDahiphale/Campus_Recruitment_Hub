@@ -1,0 +1,209 @@
+{% extends 'base_admin.html' %}
+
+{% block content %}
+
+<div class="home_content">
+    <div class="text">Notices</div>
+    <div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <div class="alert alert-success alert-dismissable" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                    <span aria-hidden="true">x</span>
+                </button>
+                {{ message }}
+            </div>
+
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+    </div>
+    <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#mymodal">Add New
+        Notice</button>
+    <br>
+    <br>
+
+    <div class="title">
+        List of events organized in college campus.
+    </div>
+    <div class="count">No. of Notices: {{totalnotices}}</div>
+    <table class="styled-table">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Notice Title</th>
+            <th scope="col">More details</th>
+            <th scope="col">Date</th>
+            <th scope="col" style="column-width:190px;">Actions</th>
+        </tr>
+        {% for notice in notices %}
+        <tr>
+            <td>{{notice["notice_id"]}}</td>
+            <td>{{notice["notice_title"]}}</td>
+            <td>{{notice["notice_name"]}}</td>
+            <td>{{notice["notice_date"]}}</td>
+
+            <td scope="row">
+                <form action="{{ url_for('delete_notice',del_id=notice[0])}}" method="post">
+                    <a href="/update_notice/{{notice['notice_id']}}" class="btn btn-success btn-xl" data-toggle="modal"
+                        data-target="#modaledit{{notice['notice_id']}}">Update</a>
+
+                    <input type="submit" value="Delete" class="btn btn-danger btn-xl"
+                        onclick="return confirm('Are you sure to delete?')">
+                </form>
+            </td>
+        </tr>
+
+        <!-- Update Event -->
+        <div>
+            <div class="modal fade" id="modaledit{{notice['notice_id']}}" role="dialog" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <center>
+                                <h4 class="modal-title">Update Notice</h4>
+                            </center>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{url_for('update_notice')}}" method="post">
+                                <div class="container-fluid">
+                                    <div class="row form-group">
+                                        <div class="col-sm-4">
+                                            <label class="control-label modal-label">Notice Title </label>
+                                            <span class="text-danger">*</span>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="notice_title"
+                                                value="{{notice['notice_title']}}" required>
+
+                                        </div>
+                                        </br>
+                                        </br>
+                                        </br>
+                                        <div class="row form-group">
+                                            <div class="col-sm-4">
+                                                <label class="control-label modal-label"
+                                                    style="margin-left:10px ;">Notice Name </label>
+                                                <span class="text-danger">*</span>
+                                            </div>
+                                            <div class="col-sm-8">
+
+                                                <textarea class="form-control" name="notice_name"
+                                                    value="{{notice['notice_name']}}" required></textarea>
+                                            </div>
+                                            <br>
+                                            <br>
+                                            <br><br>
+
+                                            <div class="row form-group">
+                                                <div class="col-sm-4">
+                                                    <label class="control-label modal-label"
+                                                        style="margin-left:10px ;">Notice Date </label>
+                                                    <span class="text-danger">*</span>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <input type="date" class="form-control" name="notice_date"
+                                                        value="{{notice['notice_date']}}" required>
+                                                </div>
+                                            </div>
+                                            </br>
+                                            <br>
+                                            <br>
+
+                                            <div class="row form-group" style="margin-left:10px ;">
+                                                <button type="submit" class="btn btn-primary"><span
+                                                        class="fa fa-save"></span>Update</a>
+                                            </div>
+                                            <br>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-outline-dark"
+                                                    data-dismiss="modal"><span
+                                                        class="fa fa-eject"></span>Cancel</button>
+                                            </div>
+                                            <input type="hidden" name="notice_id" value="{{notice['notice_id']}}">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </table>
+
+    <!-- Add Notice -->
+    <div>
+        <div class="modal fade" id="mymodal" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <center>
+                            <h4 class="modal-title">Add New Notice</h4>
+                        </center>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ url_for('insertnotice')}}" method="post">
+                            <div class="container-fluid">
+                                <div class="row form-group">
+                                    <div class="col-sm-4">
+                                        <label class="control-label modal-label">Notice Title
+                                        </label>
+                                        <span class="text-danger">*</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" name="notice_title"
+                                            placeholder="Aptitude Test" required>
+                                    </div>
+
+                                    </br>
+                                    </br>
+                                    <br>
+                                    <div class="row form-group">
+                                        <div class="col-sm-4">
+                                            <label class="control-label modal-label">Notice
+                                                Name </label>
+                                            <span class="text-danger">*</span>
+                                        </div>
+                                        <div class="col-sm-8">
+
+                                            <textarea class="form-control" name="notice_name" placeholder="Description"
+                                                required></textarea>
+                                        </div>
+                                        <br>
+                                        </br>
+                                        </br>
+                                        <br><br>
+
+                                        <div class="row form-group">
+                                            <div class="col-sm-4">
+                                                <label class="control-label modal-label"
+                                                    style="margin-left:10px ;">Notice Date </label>
+                                                <span class="text-danger">*</span>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input type="date" class="form-control" name="notice_date" required>
+                                            </div>
+                                        </div>
+                                        </br>
+                                        </br>
+                                        </br>
+
+                                        <div class="row form-group">
+                                            <button type="submit" class="btn btn-primary"
+                                                style="margin-left:25px ;"><span class="fa fa-save"></span>Add</a>
+                                        </div>
+                                        <br>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-outline-dark"
+                                                data-dismiss="modal"><span class="fa fa-eject"></span>Cancel</button>
+                                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,454 @@
+{% extends 'base_student.html' %}
+
+{% block content %}
+
+<div class="home_content">
+    <div class="text">Student Details</div>
+
+    <div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <div class="alert alert-success alert-xs alert-dismissable" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                    <span aria-hidden="true">x</span>
+                </button>
+                {{ message }}
+            </div>
+
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+    </div>
+
+    <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#mymodal">Add
+        Details</button>
+    <br>
+    <br>
+
+    <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#mymodal2">View & Update
+        Details</button>
+    <br>
+    <br>
+
+    <div class="title" style="background-color: rgb(191, 187, 187); color:rgb(41, 5, 119);">
+        Given Details
+    </div>
+    <br><br>
+
+
+
+    <!-- Add Details -->
+    <div>
+        <div class="modal fade" id="mymodal" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <center>
+                            <h3 class="modal-title" id="mymodal">Add Details</h3>
+                            <!-- <h4 class="modal-title">Add details</h4> -->
+                        </center>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ url_for('insertdetail')}}" method="post">
+                            <div class="container-fluid">
+
+                                <div class="row form-group">
+                                    <div class="col-sm-4">
+                                        <label class="control-label modal-label">Enrollment No.</label>
+                                        <span class="text-danger">*</span>
+
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="number" class="form-control" name="stud_enroll"
+                                            placeholder="Enter your enroll. No." class="form-control form-control-lg"
+                                            required />
+                                    </div>
+                                </div>
+                                </br>
+
+                                <div class="row form-group">
+                                    <div class="col-sm-4">
+                                        <label class="control-label modal-label">Name </label>
+                                        <span class="text-danger">*</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="stud_name" placeholder="Enter your full name: "
+                                            class="form-control" required>
+                                    </div>
+                                </div>
+                                </br>
+
+                                <div class="row form-group">
+                                    <div class="col-sm-4">
+                                        <label class="control-label modal-label">Birth Date </label>
+                                        <span class="text-danger">*</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="date" class="form-control" name="birth_date" required>
+                                    </div>
+                                </div>
+                                </br>
+
+                                <div class="row form-group">
+                                    <div class="col-sm-4">
+                                        <label class="control-label modal-label">Gender </label>
+                                        <span class="text-danger">*</span>
+                                        <br>
+                                        <label class="control-label modal-label" for="gender_male">Male</label>
+                                        <br>
+                                        <label class="control-label modal-label" for="gender_female">Female</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="radio" id="gender_male" name="stud_gender" class="form-control">
+
+                                        <input type="radio" id="gender_female" name="stud_gender"
+                                            class="form-control" />
+                                    </div>
+                                </div>
+                                </br>
+
+                                <div class="row form-group">
+                                    <div class="col-sm-4">
+                                        <label class="control-label modal-label">Address</label>
+                                        <span class="text-danger">*</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" name="stud_address"
+                                            placeholder="Tal- Haveli, Dist. Pune" required>
+                                    </div>
+                                </div>
+                                </br>
+
+                                <div class="row form-group">
+                                    <div class="col-sm-4">
+                                        <label class="control-label modal-label">Branch</label>
+                                        <span class="text-danger">*</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <select class="form-control" name='stud_branch' required>
+                                            <!-- Branch of Study -->
+
+                                            <option value="Computer Engineering">Computer Engineering
+                                            </option>
+                                            <option value="Mechanical Engineering">Mechanical
+                                                Engineering</option>
+                                            <option value="Electrical Engineering">Electrical
+                                                Engineering</option>
+                                            <option value="Civil Engineering">Civil Engineering</option>
+                                            <option value="Information Technology Engineering">
+                                                Information
+                                                Technology
+                                                Engineering</option>
+                                            <option value="Electronic and Telecommunication Engineering">
+                                                Electronic
+                                                and
+                                                Telecommunication
+                                                Engineering</option>
+                                            <option value="Metallurgical Engineering">Metallurgical
+                                                Engineering
+                                            </option>
+                                            <option value="Dress Design and Garment Manufacturing Engineering">
+                                                Dress
+                                                Design and Garment
+                                                Manufacturing Engineering</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                </br>
+
+                                <div class="row form-group">
+                                    <div class="col-sm-4">
+                                        <label class="control-label modal-label">Branch Code</label>
+                                        <span class="text-danger">*</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="number" name="stud_branch_code"
+                                            placeholder="Enter 3rd and 4th digit of your Enroll. No."
+                                            class="form-control" required />
+                                    </div>
+                                </div>
+                                </br>
+
+                                <div class="row form-group">
+                                    <div class="col-sm-4">
+                                        <label class="control-label modal-label">Marks</label>
+                                        <span class="text-danger">*</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="number" name="stud_marks"
+                                            placeholder="Enter average percentage of last year" class="form-control"
+                                            required />
+                                    </div>
+                                </div>
+                                </br>
+
+                                <div class="row form-group">
+                                    <div class="col-sm-4">
+                                        <label class="control-label modal-label">No. Backlog
+                                            Subjects</label>
+                                        <span class="text-danger">*</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <select class="form-control" name="stud_back_sub" required>
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                </br>
+
+                                <div class="row form-group">
+                                    <div class="col-sm-4">
+                                        <label class="control-label modal-label">Interested
+                                            Company</label>
+                                        <span class="text-danger">*</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="stud_in_comp" placeholder="Company name will be displyed here when you apply.
+                                             Still enter your dream company." class="form-control" />
+                                    </div>
+                                </div>
+                                </br>
+
+                                <div class="row form-group">
+                                    <button type="submit" class="btn btn-primary btn-xl"><span
+                                            class="fa fa-save"></span>Add
+                                        details</a>
+                                </div>
+                                <br>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-dark" data-dismiss="modal"><span
+                                            class="fa fa-eject"></span>Cancel</button>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Display details  and Update details -->
+
+
+    <div class="container-fluid">
+        <form action="{{ url_for('update_details')}}" method="post">
+            {% for detail in details_of_each %}
+            <div class="row form-group">
+                <div class="col-sm-4">
+                    <label class="control-label modal-label">Enrollment No.</label>
+                </div>
+                <div class="col-sm-8">
+                    <input type="number" class="form-control" name="stud_enroll" value="{{detail['stud_enroll']}}"
+                        class="form-control form-control-lg" disabled />
+
+                </div>
+            </div>
+            </br>
+
+            <div class="row form-group">
+                <div class="col-sm-4">
+                    <label class="control-label modal-label">Name </label>
+
+                </div>
+                <div class="col-sm-8">
+                    <input type="text" name="stud_name" value="{{detail['stud_name']}}" class="form-control" required>
+                </div>
+            </div>
+            </br>
+
+            <div class="row form-group">
+                <div class="col-sm-4">
+                    <label class="control-label modal-label">Birth Date </label>
+
+                </div>
+                <div class="col-sm-8">
+                    <input type="date" class="form-control" name="birth_date" value="{{detail['birth_date']}}" required>
+                </div>
+            </div>
+            </br>
+            <!-- 
+        <div class="row form-group">
+            <div class="col-sm-4">
+                <label class="control-label modal-label">Gender </label>
+                <br>
+                <label class="control-label modal-label" for="gender_male">Male</label>
+                <br>
+                <label class="control-label modal-label" for="gender_female">Female</label>
+            </div>
+            <div class="col-sm-8">
+
+                <input type="text" class="form-control" name="stud_gender" value="{{detail['stud_gender']}}" disabled>
+
+                <input type="radio" name="stud_gender" value="{{detail['stud_gender']}}" class="form-control" disabled>
+
+                <input type="radio" id="gender_female" name="stud_gender" value="{{detail['stud_gender']}}"
+                    class="form-control" />
+            </div>
+        </div>
+        </br> -->
+
+            <div class="row form-group">
+                <div class="col-sm-4">
+                    <label class="control-label modal-label">Address</label>
+
+                </div>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="stud_address" value="{{detail['stud_address']}}"
+                        required>
+                </div>
+            </div>
+            </br>
+
+            <div class="row form-group">
+                <div class="col-sm-4">
+                    <label class="control-label modal-label">Branch</label>
+
+                </div>
+                <div class="col-sm-8">
+                    <select class="form-control" name='stud_branch' value="{{detail['stud_branch']}}" required>
+                        <!-- Branch of Study -->
+
+                        <option value="Computer Engineering">Computer Engineering</option>
+                        <option value="Mechanical Engineering">Mechanical Engineering</option>
+                        <option value="Electrical Engineering">Electrical Engineering</option>
+                        <option value="Civil Engineering">Civil Engineering</option>
+                        <option value="Information Technology Engineering">Information Technology
+                            Engineering</option>
+                        <option value="Electronic and Telecommunication Engineering">Electronic and
+                            Telecommunication
+                            Engineering</option>
+                        <option value="Metallurgical Engineering">Metallurgical Engineering</option>
+                        <option value="Dress Design and Garment Manufacturing Engineering">Dress
+                            Design and Garment
+                            Manufacturing Engineering</option>
+
+                    </select>
+                </div>
+            </div>
+            </br>
+
+            <div class="row form-group">
+                <div class="col-sm-4">
+                    <label class="control-label modal-label">Branch Code</label>
+
+                </div>
+                <div class="col-sm-8">
+                    <input type="number" name="stud_branch_code" value="{{detail['stud_branch_code']}}"
+                        class="form-control" required />
+                </div>
+            </div>
+            </br>
+
+            <div class="row form-group">
+                <div class="col-sm-4">
+                    <label class="control-label modal-label">Marks</label>
+
+                </div>
+                <div class="col-sm-8">
+                    <input type="number" name="stud_marks" value="{{detail['stud_marks']}}" class="form-control"
+                        required />
+                </div>
+            </div>
+            </br>
+
+            <div class="row form-group">
+                <div class="col-sm-4">
+                    <label class="control-label modal-label">No. Backlog Subjects</label>
+
+                </div>
+                <div class="col-sm-8">
+                    <select class="form-control" name="stud_back_sub" value="{{detail['stud_back_sub']}}" required>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+            </div>
+            </br>
+
+            <div class="row form-group">
+                <div class="col-sm-4">
+                    <label class="control-label modal-label">Interested Company</label>
+                </div>
+                <div class="col-sm-8">
+                    <input type="text" name="stud_in_comp" value="{{detail['stud_in_comp']}}" class="form-control"
+                        required />
+                </div>
+            </div>
+            </br>
+
+            <div class="row form-group">
+                <button type="submit" class="btn btn-primary btn-xl"><span class="fa fa-save"></span>Update Details</a>
+            </div>
+            <br>
+            <input type="hidden" name="stud_enroll" value="{{detail['stud_enroll']}}">
+
+            {% endfor %}
+        </form>
+    </div>
+
+
+</div>
+
+<div>
+    <div class="modal fade" id="mymodal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <center>
+                        <h3 class="modal-title" id="mymodal">TO view details</h5>
+                    </center>
+                    <div>
+                        {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                        <ul>
+                            {% for message in messages %}
+                            <div class="alert alert-success alert-dismissable" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                                    <span aria-hidden="true">x</span>
+                                </button>
+                                {{ message }}
+                            </div>
+
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                        {% endwith %}
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{url_for('view_detail')}}" method="post">
+                        <div class="form-group">
+                            <label for="recipient-name" style="font-size: 17px; font-family:monospace;"
+                                class="col-form-label">Enrollment No.</label>
+                            <input type="number" class="form-control" name="stud_enroll"
+                                placeholder="Enter your Enroll. no. to view details..">
+                        </div>
+                        <button type="submit" style="width: 40%;" class="btn btn-info">Submit</button><br>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" style="width: 40%;" class="btn btn-danger" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

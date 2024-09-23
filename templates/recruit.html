@@ -1,0 +1,269 @@
+{% extends 'base_admin.html' %}
+
+{% block content %}
+
+<div class="home_content">
+    <div class="text">Data of Past Recruiters</div>
+    <div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <div class="alert alert-success alert-dismissable" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                    <span aria-hidden="true">x</span>
+                </button>
+                {{ message }}
+            </div>
+
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+    </div>
+    <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#mymodal">Add
+        Recruiter</button>
+    <br>
+    <br>
+
+    <div class="title">
+        Basic information about Past Recruiters.
+    </div>
+    <div class="count">No. of Past Recruiters: {{totalrecruiters}}</div>
+    <table class="styled-table">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Company Name</th>
+            <th scope="col">Recruiter Name</th>
+            <th scope="col">Recruit Date</th>
+            <th scope="col">Selected Student</th>
+            <th scope="col">More Info</th>
+            <th scope="col" style="column-width:190px;">Actions</th>
+        </tr>
+        {% for recruit in recruiters %}
+        <tr>
+            <td>{{recruit["comp_id"]}}</td>
+            <td>{{recruit["comp_name"]}}</td>
+            <td>{{recruit["recruiter_name"]}}</td>
+            <td>{{recruit["recruit_date"]}}</td>
+            <td>{{recruit["selected_stud"]}}</td>
+            <td><a href="{{recruit['comp_website']}}">
+                    <button type="button" class="btn btn-primary">Visit Website</button></a>
+            </td>
+            <td>
+
+            <td scope="row">
+                <form action="{{ url_for('deletedata',del_id=recruit[0])}}" method="post">
+                    <a href="/updatedata/{{recruit['comp_id']}}" class="btn btn-success btn-xl" data-toggle="modal"
+                        data-target="#modaledit{{recruit['comp_id']}}">Update</a>
+
+                    <input type="submit" value="Delete" class="btn btn-danger btn-xl"
+                        onclick="return confirm('Are you sure to delete?')">
+                </form>
+            </td>
+            </td>
+        </tr>
+        <!-- Update Recruiters -->
+        <div>
+            <div class="modal fade" id="modaledit{{recruit['comp_id']}}" role="dialog" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <center>
+                                <h4 class="modal-title">Update Recruiter</h4>
+                            </center>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{ url_for('updatedata')}}" method="post">
+                                <div class="container-fluid">
+                                    <div class="row form-group">
+                                        <div class="col-sm-4">
+                                            <label class="control-label modal-label">Company Name
+                                            </label>
+                                            <span class="text-danger">*</span>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="comp_name"
+                                                value="{{recruit['comp_name']}}" required>
+                                            <input type="hidden" name="comp_id" value="{{recruit['comp_id']}}">
+                                        </div>
+
+                                        </br>
+                                        </br>
+                                        <br>
+                                        <div class="row form-group">
+                                            <div class="col-sm-4">
+                                                <label class="control-label modal-label">Recruiter Name</label>
+                                                <span class="text-danger">*</span>
+                                            </div>
+                                            <div class="col-sm-8">
+
+                                                <input type="text" class="form-control" name="recruiter_name"
+                                                    value="{{recruit['recruiter_name']}}" required>
+                                            </div>
+                                            <br>
+                                            </br>
+                                            </br>
+                                            <br><br>
+
+                                            <div class="row form-group">
+                                                <div class="col-sm-4">
+                                                    <label class="control-label modal-label"
+                                                        style="margin-left:10px ;">Recruit Date </label>
+                                                    <span class="text-danger">*</span>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <input type="date" class="form-control" name="recruit_date"
+                                                        value="{{recruit['recruit_date']}}" required>
+                                                </div>
+                                            </div>
+                                            </br>
+                                            </br>
+                                            </br>
+                                            <div class="row form-group">
+                                                <div class="col-sm-4">
+                                                    <label class="control-label modal-label"
+                                                        style="margin-left:10px ;">No. of Selected Students </label>
+                                                    <span class="text-danger">*</span>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <input type="number" name="selected_stud"
+                                                        value="{{recruit['selected_stud']}}" class="form-control"
+                                                        required>
+                                                </div>
+                                            </div>
+                                            </br>
+                                            </br>
+                                            </br>
+                                            <div class="row form-group">
+                                                <div class="col-sm-4">
+                                                    <label class="control-label modal-label"
+                                                        style="margin-left:10px ;">Company's Website </label>
+                                                    <span class="text-danger">*</span>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <input type="url" name="comp_website"
+                                                        value="{{recruit['comp_website']}}" class="form-control"
+                                                        required>
+                                                </div>
+                                            </div>
+                                            </br>
+                                            </br>
+                                            </br>
+
+                                            <div class="row form-group">
+                                                <button type="submit" class="btn btn-primary"
+                                                    style="margin-left:25px ;"><span class="fa fa-save"></span>Add</a>
+                                            </div>
+                                            <br>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-outline-dark"
+                                                    data-dismiss="modal"><span
+                                                        class="fa fa-eject"></span>Cancel</button>
+                                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </table>
+
+    <!-- Add Recruiters -->
+    <div>
+        <div class="modal fade" id="mymodal" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <center>
+                            <h4 class="modal-title">Add New Recruiter</h4>
+                        </center>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ url_for('insertdata')}}" method="post">
+                            <div class="container-fluid">
+                                <div class="row form-group">
+                                    <div class="col-sm-4">
+                                        <label class="control-label modal-label">Company Name
+                                        </label>
+                                        <span class="text-danger">*</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" name="comp_name" placeholder="abcd"
+                                            required>
+                                    </div>
+
+                                    </br>
+                                    </br>
+                                    <br>
+                                    <div class="row form-group">
+                                        <div class="col-sm-4">
+                                            <label class="control-label modal-label">Recruiter Name</label>
+                                            <span class="text-danger">*</span>
+                                        </div>
+                                        <div class="col-sm-8">
+
+                                            <input type="text" class="form-control" name="recruiter_name" required>
+                                        </div>
+                                        <br>
+                                        <br><br>
+                                        <div class="row form-group">
+                                            <div class="col-sm-4">
+                                                <label class="control-label modal-label"
+                                                    style="margin-left:10px ;">Recruit Date </label>
+                                                <span class="text-danger">*</span>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input type="date" class="form-control" name="recruit_date" required>
+                                            </div>
+                                        </div>
+                                        </br>
+
+                                        <div class="row form-group">
+                                            <div class="col-sm-4">
+                                                <label class="control-label modal-label"
+                                                    style="margin-left:10px ;">Selected Students </label><span
+                                                    class="text-danger">*</span>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input type="number" name="selected_stud" class="form-control"
+                                                    placeholder="Enter no. of selected students" required>
+                                            </div>
+                                        </div>
+                                        </br>
+                                        <div class="row form-group">
+                                            <div class="col-sm-4">
+                                                <label class="control-label modal-label"
+                                                    style="margin-left:10px ;">Company's Website </label>
+                                                <span class="text-danger">*</span>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input type="url" name="comp_website" placeholder="www.abcd.org"
+                                                    class="form-control" required>
+                                            </div>
+                                        </div>
+                                        </br>
+                                        </br>
+                                        </br>
+
+                                        <div class="row form-group">
+                                            <button type="submit" class="btn btn-primary"
+                                                style="margin-left:25px ;"><span class="fa fa-save"></span>Add</a>
+                                        </div>
+                                        <br>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-outline-dark"
+                                                data-dismiss="modal"><span class="fa fa-eject"></span>Cancel</button>
+                                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+{% endblock %}

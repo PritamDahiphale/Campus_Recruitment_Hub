@@ -1,0 +1,48 @@
+{% extends 'base_admin.html' %}
+
+
+{% block content %}
+
+<div class="home_content">
+    <div class="text">Student Details</div>
+
+    <div class="title">
+        Basic information about student.
+        <button style="margin-left: 20px;" class="btn btn-info" id="mybtn_cor">Table To Excel</button>
+    </div>
+    <div class="count">No. of Students: {{totalstud}}</div>
+
+    <table id="stud_table" class="styled-table">
+        <tr>
+            <th scope="col">Enroll. No.</th>
+            <th scope="col">Name</th>
+            <th scope="col">Birth Date</th>
+            <!-- <th scope="col">Gender</th> -->
+            <th scope="col">Address</th>
+            <th scope="col">Branch</th>
+            <th scope="col">Branch Code</th>
+            <th scope="col">Marks</th>
+            <th scope="col">Backlog Subjects</th>
+            <th scope="col">Interested Company</th>
+        </tr>
+        <tr>
+
+            {% for detail in details %}
+            <td>{{detail["stud_enroll"]}}</td>
+            <td>{{detail["stud_name"]}}</td>
+            <td>{{detail["birth_date"]}}</td>
+            <!-- <td>{{detail["stud_gender"]}}</td> -->
+            <td>{{detail["stud_address"]}}</td>
+            <td>{{detail["stud_branch"]}}</td>
+            <td>{{detail["stud_branch_code"]}}</td>
+            <td>{{detail["stud_marks"]}}</td>
+            <td>{{detail["stud_back_sub"]}}</td>
+            <td>{{detail["stud_in_comp"]}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+
+
+{% endblock %}

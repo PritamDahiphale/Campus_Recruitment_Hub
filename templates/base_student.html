@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <title> Student Page </title>
+    <link rel="stylesheet" href="static/css/adminstyle.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+
+            var data = google.visualization.arrayToDataTable([
+                ['Department', 'No. of recruited students'],
+                ['Computer', 9],
+                ['Mechanical', 2],
+                ['Electrical', 2],
+                ['Civil', 2],
+                ['IT', 6],
+                ['AI&DS', 3]
+
+                // ['Task', 'Hours per Day'],
+                // ['Work', 11],
+                // ['Eat', 2],
+                // ['Commute', 2],
+                // ['Watch TV', 2],
+                // ['Sleep', 7]
+
+            ]);
+
+            var options = {
+                title: 'Past Recruitment Status'
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+            chart.draw(data, options);
+        }
+    </script>
+
+
+
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo_content">
+            <div class="logo">
+                <div class="logo_name">
+                    {{session.username}}
+                </div>
+            </div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav_list">
+            <!-- <li>
+                <i class='bx bx-search'></i>
+                <input type="text" placeholder="Search...">
+                <span class="tooltip">Search</span>
+            </li> -->
+            <li>
+                <a href="/stud_dash">
+                    <i class='bx bx-grid-alt'></i>
+                    <span class=" links_name">Dashboard</span>
+                </a>
+                <span class="tooltip">Dashboard</span>
+            </li>
+            <li>
+                <a href="/add_detail">
+                    <i class='bx bx-user'></i>
+                    <span class="links_name">Add Details</span>
+                </a>
+                <span class="tooltip">Details</span>
+            </li>
+            <li>
+                <a href="/viewCompany">
+
+                    <!-- Give option for applying to company -->
+                    <i class='bx bx-buildings'></i>
+                    <span class="links_name">View Company</span>
+                </a>
+                <span class="tooltip">Company</span>
+            </li>
+            <li>
+                <a href="/viewEvents">
+                    <i class='bx bxl-meta'></i>
+                    <span class="links_name">View Events</span>
+                </a>
+                <span class="tooltip">Events</span>
+            </li>
+            <li>
+                <a href="/view_stat">
+                    <i class='bx bx-line-chart'></i>
+                    <span class="links_name">Past Placement Statistic</span>
+                </a>
+                <span class="tooltip">View Statistic</span>
+            </li>
+            <li>
+                <a href="/viewDataOfRecruiters">
+                    <i class='bx bxs-user-pin'></i>
+                    <span class="links_name">Data of past recruiters</span>
+                </a>
+                <span class="tooltip">Recruiters</span>
+            </li>
+            <!-- <li>
+                <a href="#">
+                    <i class='bx bx-receipt'></i>
+                    <span class="links_name">Download Material</span>
+                </a>
+                <span class="tooltip">Manual</span>
+            </li> -->
+            <li>
+                <a href="/changepass_stud">
+                    <i class='bx bx-lock'></i>
+                    <span class="links_name">Change Password</span>
+                </a>
+                <span class="tooltip">Password</span>
+            </li>
+            <li>
+                <a href="/logout" onclick="return confirm('Are you sure you want to logout of the system!!')">
+                    <i class='bx bx-log-out'></i>
+                    <span class="links_name">Log Out</span>
+                </a>
+                <span class="tooltip">Log out</span>
+            </li>
+        </ul>
+        <div class="content">
+            <div class="user">
+                <div class="user_details">
+                    <img src="static/images/profile.jpg" alt="">
+                    <div class="name_job">
+                        <div class="name">GPPUNE</div>
+                        <!-- <div class="job">Training & Placement Cell</div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% block content %}
+
+
+    {% endblock %}
+
+
+    <script src="static/js/script.js"></script>
+
+</body>
+
+</html>

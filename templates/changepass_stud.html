@@ -1,0 +1,50 @@
+{% extends 'base_student.html' %}
+
+{% block content %}
+
+<div class="home_content">
+    <div class="text">Change Password</div>
+
+    <!-- <div class="container"> -->
+
+    <div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <div class="alert alert-success alert-dismissable" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                    <span aria-hidden="true">x</span>
+                </button>
+                {{ message }}
+            </div>
+
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+    </div>
+    <br>
+    <form action="{{ url_for('changepass_stud_db')}}" method="post">
+        <div class="text">
+            <div class="form-outline">
+                <label class="form-label" style="font-size: 19px;font-weight: 500;">Username</label><br>
+                <input type="text" name="username" style="width: 60%;" placeholder="Enter your username..."
+                    class="form-control form-control-lg" required="1" />
+            </div>
+            <br>
+            <div class="form-outline">
+                <label class="form-label" style="font-size: 19px;font-weight: 500;">New Password</label><br>
+                <input type="password" name="new_pass" style="width: 60%;" placeholder="Enter new password..."
+                    class="form-control form-control-lg" required="1" />
+            </div>
+        </div>
+
+        <br><br>
+        <input type="submit" value="Change" class="btn btn-primary">
+
+    </form>
+</div>
+<!-- </div> -->
+
+{% endblock %}

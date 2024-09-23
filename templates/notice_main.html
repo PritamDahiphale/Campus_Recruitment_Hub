@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="containercontact">
+    <!-- <div class="col1"><img src="static/images/notice.webp" class="noticeimg"></div> -->
+
+
+    <center class="noticetxt">Notices</center><br>
+    <div class="count2">No. of Notices: {{totalnotices}}</div>
+    <br>
+    {% for notice in notices %}
+    <marquee direction="up" scrolldelay="110">
+        <div class="success">
+            <p>
+                <strong>{{notice["notice_title"]}}</strong><br>
+                <small class="name">{{notice["notice_name"]}}</small>
+            <h4>{{notice["notice_date"]}}</h4>
+            </p>
+        </div>
+    </marquee>
+    {% endfor %}
+
+
+
+</div>
+
+
+{% endblock %}

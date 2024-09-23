@@ -1,0 +1,105 @@
+{% extends 'base_student.html' %}
+
+
+{% block content %}
+
+<div class="home_content">
+    <div class="text">Company's Data</div>
+
+    <div class="title">
+        Basic information about registered companies.
+    </div>
+    <div class="count">No. of Companies: {{totalcomp}}</div>
+    <table class="styled-table">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Joined</th>
+            <th scope="col">Turnover</th>
+            <th scope="col">More Details</th>
+            <th scope="col">Action</th>
+        </tr>
+        <tr>
+
+            {% for comp in companies %}
+            <td>{{comp["comp_id"]}}</td>
+            <td>{{comp["comp_name"]}}</td>
+            <td>{{comp["comp_joined_date"]}}</td>
+            <td>{{comp["comp_turnover"]}}$</td>
+            <td><a href="{{comp['comp_website']}}"><button type="button" class="btn btn-primary">Visit
+                        Website</button></a>
+            </td>
+            <td>
+                <!-- <form action="{{ url_for('apply_comp')}}" method="post"> -->
+                <!-- <button type="button" value="Apply" class="btn btn-success"
+                    onclick="alert('You are going to apply to the company..')"> -->
+                <!-- <input type="hidden" name="comp_name" value="{{comp['comp_name']}}"> -->
+                <!-- </form> -->
+
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#mymodal2">Apply</button>
+                <br>
+            </td>
+        </tr>
+
+        <div>
+            <div class="modal fade" id="mymodal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <center>
+                                <h3 class="modal-title" id="mymodal">Applying for Company</h5>
+                            </center>
+                            <div>
+                                {% with messages = get_flashed_messages() %}
+                                {% if messages %}
+                                <ul>
+                                    {% for message in messages %}
+                                    <div class="alert alert-success alert-dismissable" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                                            <span aria-hidden="true">x</span>
+                                        </button>
+                                        {{ message }}
+                                    </div>
+
+                                    {% endfor %}
+                                </ul>
+                                {% endif %}
+                                {% endwith %}
+                            </div>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{url_for('apply_comp')}}" method="post">
+                                <div class="form-group">
+                                    <label for="recipient-name" style="font-size: 17px; font-family:monospace;"
+                                        class="col-form-label">Enrollment No.</label>
+                                    <input type="number" class="form-control" name="stud_enroll"
+                                        placeholder="Enter your Enroll. no. for applying ro company..">
+                                </div>
+                                <button type="submit" style="width: 40%;" class="btn btn-info">Submit</button><br>
+                                <input type="hidden" name="comp_name" value="{{comp['comp_name']}}">
+
+                            </form>
+
+                        </div>
+                        <div class="modal-footer">
+
+                            <button type="button" style="width: 40%;" class="btn btn-danger"
+                                data-dismiss="modal">Close</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </table>
+
+</div>
+
+
+
+{% endblock %}
